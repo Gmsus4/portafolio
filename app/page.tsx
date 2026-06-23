@@ -44,7 +44,7 @@ export default function Home() {
 
       <main className="mx-auto w-full max-w-[640px] flex-1 px-6 sm:px-0">
         {/* HERO / ABOUT */}
-        <section id="about" className="pt-0 pb-20 sm:pt-20 sm:pb-24">
+        <section id="about" className="pt-0 pb-20 sm:pt-6 sm:pb-24">
           <h1 className="serif mt-8 text-5xl leading-[1.05] text-foreground sm:text-6xl">{t.hero.title}</h1>
           <p className="serif mt-6 text-2xl leading-snug text-foreground/85 sm:text-3xl">{t.hero.tagline}</p>
           <div className="mt-6 flex items-center gap-2 text-sm text-muted">
