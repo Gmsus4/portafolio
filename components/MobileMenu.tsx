@@ -39,7 +39,7 @@ export function MobileMenu() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="sm:hidden -mr-2 p-2 text-muted transition-colors hover:text-foreground fixed right-6 bg-backgroundMobile rounded-full"
+        className="sm:hidden -mr-2 p-2 text-muted transition-colors hover:text-foreground fixed z-50 right-6 bg-backgroundMobile rounded-full"
         aria-label="Open menu"
         aria-expanded={open}
         aria-controls="mobile-menu"
