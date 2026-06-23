@@ -67,7 +67,18 @@ export function MobileMenu() {
           className="fixed inset-0 z-50 flex flex-col bg-background sm:hidden"
         >
           <div className="mx-auto flex w-full max-w-[640px] items-center justify-between px-6 py-8">
-            <span className="font-medium tracking-tight text-foreground p-2">Fernando Gómez</span>
+            <span className="inline-flex items-center gap-2 font-medium tracking-tight text-foreground p-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/icon.png"
+                alt=""
+                aria-hidden
+                width={28}
+                height={28}
+                className="h-7 w-7 rounded"
+              />
+              Fernando Gómez
+            </span>
             <button
               type="button"
               onClick={close}

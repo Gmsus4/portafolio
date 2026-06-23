@@ -15,9 +15,21 @@ export default function Home() {
     <div className="flex flex-1 flex-col" id="top">
       <header className="mx-auto w-full max-w-[640px] px-6 py-8 sm:px-0">
         <div className="flex items-center justify-between text-sm">
-          <Link href="/" className="font-medium tracking-tight text-foreground p-2">
-            Fernando Gómez
-          </Link>
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 font-medium tracking-tight text-foreground p-2"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/icon.png"
+                alt=""
+                aria-hidden
+                width={28}
+                height={28}
+                className="h-7 w-7 rounded"
+              />
+              Fernando Gómez
+            </Link>
           <div className="hidden items-center gap-5 text-muted sm:flex">
             <nav aria-label="Primary" className="flex items-center gap-5">
               <a href="#about" className="transition-colors hover:text-foreground">
