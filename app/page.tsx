@@ -1,109 +1,121 @@
-import Link from "next/link";
-import { projects, skills, socials } from "@/lib/data";
+"use client";
 
-const NAV = [
-  { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
+import Link from "next/link";
+import { useI18n } from "@/lib/i18n";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { email, projects, skills, socials, timeline } from "@/lib/data";
 
 export default function Home() {
+  const { t, lang } = useI18n();
+
   return (
-    <div className="flex flex-1 flex-col">
-      <header className="mx-auto flex w-full max-w-[640px] items-center justify-between px-6 py-8 sm:px-0">
-        <Link
-          href="#top"
-          className="text-sm font-medium tracking-tight text-foreground"
-        >
-          Aurelio Marín
-        </Link>
-        <nav
-          aria-label="Primary"
-          className="flex items-center gap-5 text-sm text-muted"
-        >
-          {NAV.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+    <div className="flex flex-1 flex-col" id="top">
+      <header className="mx-auto w-full max-w-[640px] px-6 py-8 sm:px-0">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-sm">
+          <Link href="/" className="font-medium tracking-tight text-foreground">
+            Fernando Gómez
+          </Link>
+          <div className="flex items-center gap-5 text-muted">
+            <nav aria-label="Primary" className="flex flex-wrap items-center gap-x-5 gap-y-1">
+              <a href="#about" className="transition-colors hover:text-foreground">
+                {t.nav.about}
+              </a>
+              <a href="#work" className="transition-colors hover:text-foreground">
+                {t.nav.work}
+              </a>
+              <a href="#skills" className="transition-colors hover:text-foreground">
+                {t.nav.skills}
+              </a>
+              <a href="#contact" className="transition-colors hover:text-foreground">
+                {t.nav.contact}
+              </a>
+            </nav>
+            <span aria-hidden className="text-foreground/20">
+              ·
+            </span>
+            <LanguageToggle />
+          </div>
+        </div>
       </header>
 
-      <main
-        id="top"
-        className="mx-auto w-full max-w-[640px] flex-1 px-6 sm:px-0"
-      >
+      <main className="mx-auto w-full max-w-[640px] flex-1 px-6 sm:px-0">
         {/* HERO / ABOUT */}
-        <section id="about" className="pt-12 pb-24 sm:pt-20 sm:pb-32">
-          <p className="text-sm text-muted">
-            Independent web developer · Madrid
-          </p>
-          <h1 className="serif mt-6 text-5xl leading-[1.05] text-foreground sm:text-6xl">
-            Aurelio Marín.
-          </h1>
-          <p className="serif mt-6 text-2xl leading-snug text-foreground/85 sm:text-3xl">
-            I build considered, performant interfaces for studios, founders and
-            the occasional museum.
-          </p>
-
+        <section id="about" className="pt-12 pb-20 sm:pt-20 sm:pb-24">
+          <div className="flex items-center gap-2 text-sm text-muted">
+            <span className="relative inline-flex h-1.5 w-1.5">
+              <span className="absolute inset-0 inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+            </span>
+            <span>{t.hero.status}</span>
+            <span aria-hidden>·</span>
+            <span>Jalisco</span>
+          </div>
+          <h1 className="serif mt-6 text-5xl leading-[1.05] text-foreground sm:text-6xl">{t.hero.title}</h1>
+          <p className="serif mt-6 text-2xl leading-snug text-foreground/85 sm:text-3xl">{t.hero.tagline}</p>
           <div className="mt-10 space-y-5 text-base leading-relaxed text-foreground/80 sm:text-lg">
-            <p>
-              Eight years writing the front half of the web — mostly
-              TypeScript, React and CSS, occasionally Svelte and Astro, almost
-              never anything else. I work on small, well-defined slices of
-              larger products: a design system, a checkout, a dashboard, an
-              editorial site that has to load on a five-year-old phone.
-            </p>
-            <p>
-              Currently booking a single engagement for late July. I answer
-              email the same day it arrives.
-            </p>
+            {t.hero.bio.map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
           </div>
         </section>
 
-        <hr className="rule border-t" />
+        <hr className="border-t border-rule" />
 
-        {/* WORK */}
-        <section id="work" className="py-20 sm:py-28">
+        {/* TIMELINE */}
+        {/* <section className="py-20 sm:py-24">
           <header className="mb-12 flex items-baseline justify-between">
             <h2 className="serif text-2xl text-foreground sm:text-3xl">
-              Selected work
+              {t.timeline.title}
             </h2>
-            <span className="text-sm text-muted">2023 — 2024</span>
+            <span className="text-sm text-muted">{t.timeline.subtitle}</span>
+          </header>
+          <ol className="space-y-10">
+            {timeline.map((item, i) => (
+              <li
+                key={i}
+                className="grid grid-cols-1 gap-3 sm:grid-cols-[6.5rem,1fr] sm:gap-8"
+              >
+                <div className="text-sm text-muted tabular-nums">
+                  {item.date[lang]}
+                </div>
+                <div>
+                  <h3 className="serif text-xl text-foreground sm:text-2xl">
+                    {item.title[lang]}
+                  </h3>
+                  <p className="mt-2 text-base leading-relaxed text-foreground/80">
+                    {item.body[lang]}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section> */}
+
+        <hr className="border-t border-rule" />
+
+        {/* WORK */}
+        <section id="work" className="py-20 sm:py-24">
+          <header className="mb-12 flex items-baseline justify-between">
+            <h2 className="serif text-2xl text-foreground sm:text-3xl">{t.work.title}</h2>
+            <span className="text-sm text-muted">{t.work.period}</span>
           </header>
 
           <ul>
             {projects.map((project) => (
-              <li
-                key={project.title}
-                className="group border-t border-rule py-7 first:border-t-0"
-              >
+              <li key={project.title} className="group border-t border-rule py-7 first:border-t-0">
                 <a
                   href={project.href}
                   className="block transition-opacity hover:opacity-100 opacity-95"
+                  target="_blank"
                 >
                   <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="serif text-xl text-foreground sm:text-2xl">
-                      {project.title}
-                    </h3>
-                    <span className="shrink-0 text-sm tabular-nums text-muted">
-                      {project.year}
-                    </span>
+                    <h3 className="serif text-xl text-foreground sm:text-2xl">{project.title}</h3>
+                    <span className="shrink-0 text-sm tabular-nums text-muted">{project.year}</span>
                   </div>
-                  <p className="mt-2 text-base leading-relaxed text-foreground/75">
-                    {project.description}
-                  </p>
+                  <p className="mt-2 text-base leading-relaxed text-foreground/75">{project.description[lang]}</p>
                   <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
-                    <span>{project.role}</span>
+                    <span>{project.role[lang]}</span>
                     <span aria-hidden>·</span>
-                    <span className="text-foreground/55">
-                      {project.stack.join(" / ")}
-                    </span>
+                    <span className="text-foreground/55">{project.stack.join(" / ")}</span>
                   </div>
                 </a>
               </li>
@@ -111,31 +123,23 @@ export default function Home() {
           </ul>
         </section>
 
-        <hr className="rule border-t" />
+        <hr className="border-t border-rule" />
 
         {/* SKILLS */}
-        <section id="skills" className="py-20 sm:py-28">
+        <section id="skills" className="py-20 sm:py-24">
           <header className="mb-12 flex items-baseline justify-between">
-            <h2 className="serif text-2xl text-foreground sm:text-3xl">
-              Tools I use
-            </h2>
-            <span className="text-sm text-muted">a short list</span>
+            <h2 className="serif text-2xl text-foreground sm:text-3xl">{t.skills.title}</h2>
+            <span className="text-sm text-muted">{t.skills.subtitle}</span>
           </header>
-
           <dl className="space-y-8">
             {skills.map((group) => (
-              <div
-                key={group.label}
-                className="grid grid-cols-1 gap-3 sm:grid-cols-[8rem,1fr] sm:gap-8"
-              >
-                <dt className="text-sm text-muted">{group.label}</dt>
+              <div key={group.label.en} className="grid grid-cols-1 gap-3 sm:grid-cols-[8rem,1fr] sm:gap-8">
+                <dt className="text-sm text-muted">{group.label[lang]}</dt>
                 <dd className="text-base leading-relaxed text-foreground/85">
                   {group.items.map((item, i) => (
                     <span key={item}>
                       <span className="text-foreground">{item}</span>
-                      {i < group.items.length - 1 && (
-                        <span className="mx-2 text-muted">/</span>
-                      )}
+                      {i < group.items.length - 1 && <span className="mx-2 text-muted">/</span>}
                     </span>
                   ))}
                 </dd>
@@ -144,39 +148,35 @@ export default function Home() {
           </dl>
         </section>
 
-        <hr className="rule border-t" />
+        <hr className="border-t border-rule" />
 
         {/* CONTACT */}
-        <section id="contact" className="py-20 sm:py-28">
+        <section id="contact" className="py-20 sm:py-24">
           <header className="mb-12 flex items-baseline justify-between">
-            <h2 className="serif text-2xl text-foreground sm:text-3xl">
-              Get in touch
-            </h2>
-            <span className="text-sm text-muted">always open</span>
+            <h2 className="serif text-2xl text-foreground sm:text-3xl">{t.contact.title}</h2>
+            <span className="text-sm text-muted">{t.contact.subtitle}</span>
           </header>
-
           <p className="serif text-2xl leading-snug text-foreground sm:text-3xl">
-            The fastest way to reach me is{" "}
+            {t.contact.prompt}
             <a
-              href="mailto:hola@aureliomarin.dev"
-              className="underline decoration-foreground/30 underline-offset-[6px] transition-colors hover:decoration-foreground"
+              href={`mailto:${email}`}
+              className="whitespace-nowrap underline decoration-foreground/30 underline-offset-[6px] transition-colors hover:decoration-foreground"
             >
-              hola@aureliomarin.dev
+              {email}
             </a>
             .
           </p>
-
           <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-base">
             {socials.map((social) => (
-              <li key={social.label}>
+              <li key={social.href}>
                 <a
                   href={social.href}
-                  target={social.href.startsWith("http") ? "_blank" : undefined}
-                  rel={social.href.startsWith("http") ? "noreferrer noopener" : undefined}
+                  target={social.external ? "_blank" : undefined}
+                  rel={social.external ? "noreferrer noopener" : undefined}
                   className="text-foreground/85 underline decoration-foreground/30 underline-offset-[6px] transition-colors hover:decoration-foreground"
                 >
-                  {social.label}
-                  {social.href.startsWith("http") && (
+                  {social.label[lang]}
+                  {social.external && (
                     <span aria-hidden className="ml-0.5 text-muted">
                       ↗
                     </span>
@@ -190,9 +190,9 @@ export default function Home() {
 
       <footer className="mx-auto w-full max-w-[640px] px-6 pb-10 pt-12 text-sm text-muted sm:px-0">
         <div className="flex flex-col items-start justify-between gap-2 border-t border-rule pt-6 sm:flex-row sm:items-center">
-          <p>© 2017 — 2026 Aurelio Marín</p>
+          <p>{t.footer.copyright}</p>
           <a href="#top" className="hover:text-foreground">
-            Back to top ↑
+            {t.footer.back}
           </a>
         </div>
       </footer>
