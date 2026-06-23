@@ -107,14 +107,6 @@ export function MobileMenu() {
               <LanguageToggle />
               <span className="mono text-xs uppercase tracking-[0.18em] text-muted">{t.nav.contact}</span>
             </div>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={avatar}
-              alt="Fernando Gómez"
-              width={72}
-              height={72}
-              className="mt-6 h-[72px] w-[72px] shrink-0 rounded-full object-cover"
-            />
           </div>
         </div>
       )}
