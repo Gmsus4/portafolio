@@ -2,6 +2,7 @@
 
 :root {
   --background: #f6f3ec;
+  --backgroundMobile: #eee8e3;
   --foreground: #111111;
   --muted: #767676;
   --rule: rgba(17, 17, 17, 0.12);
@@ -10,6 +11,7 @@
 
 @theme inline {
   --color-background: var(--background);
+  --color-backgroundMobile: var(--backgroundMobile);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-rule: var(--rule);

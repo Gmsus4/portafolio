@@ -184,3 +184,5 @@ export const socials: Social[] = [
 ];
 
 export const email = "fergomez.js@gmail.com";
+
+export const avatar = "/avatar.jpg";

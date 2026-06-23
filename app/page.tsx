@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import { LanguageToggle } from "@/components/LanguageToggle";
+import { MobileMenu } from "@/components/MobileMenu";
 import { ProjectImage } from "@/components/ProjectImage";
 import { SocialIcon } from "@/components/SocialIcon";
 import { email, projects, skills, socials } from "@/lib/data";
@@ -13,12 +14,12 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col" id="top">
       <header className="mx-auto w-full max-w-[640px] px-6 py-8 sm:px-0">
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 text-sm">
-          <Link href="/" className="font-medium tracking-tight text-foreground">
+        <div className="flex items-center justify-between text-sm">
+          <Link href="/" className="font-medium tracking-tight text-foreground p-2">
             Fernando Gómez
           </Link>
-          <div className="flex items-center gap-5 text-muted">
-            <nav aria-label="Primary" className="flex flex-wrap items-center gap-x-5 gap-y-1">
+          <div className="hidden items-center gap-5 text-muted sm:flex">
+            <nav aria-label="Primary" className="flex items-center gap-5">
               <a href="#about" className="transition-colors hover:text-foreground">
                 {t.nav.about}
               </a>
@@ -37,13 +38,16 @@ export default function Home() {
             </span>
             <LanguageToggle />
           </div>
+          <MobileMenu />
         </div>
       </header>
 
       <main className="mx-auto w-full max-w-[640px] flex-1 px-6 sm:px-0">
         {/* HERO / ABOUT */}
-        <section id="about" className="pt-12 pb-20 sm:pt-20 sm:pb-24">
-          <div className="flex items-center gap-2 text-sm text-muted">
+        <section id="about" className="pt-0 pb-20 sm:pt-20 sm:pb-24">
+          <h1 className="serif mt-8 text-5xl leading-[1.05] text-foreground sm:text-6xl">{t.hero.title}</h1>
+          <p className="serif mt-6 text-2xl leading-snug text-foreground/85 sm:text-3xl">{t.hero.tagline}</p>
+          <div className="mt-6 flex items-center gap-2 text-sm text-muted">
             <span className="relative inline-flex h-1.5 w-1.5">
               <span className="absolute inset-0 inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
             </span>
@@ -51,8 +55,6 @@ export default function Home() {
             <span aria-hidden>·</span>
             <span>Jalisco</span>
           </div>
-          <h1 className="serif mt-6 text-5xl leading-[1.05] text-foreground sm:text-6xl">{t.hero.title}</h1>
-          <p className="serif mt-6 text-2xl leading-snug text-foreground/85 sm:text-3xl">{t.hero.tagline}</p>
           <div className="mt-10 space-y-5 text-base leading-relaxed text-foreground/80 sm:text-lg">
             {t.hero.bio.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
@@ -116,7 +118,18 @@ export default function Home() {
                   <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
                     <span>{project.role[lang]}</span>
                     <span aria-hidden>·</span>
-                    <span className="text-foreground/55">{project.stack.join(" / ")}</span>
+                    <span className="flex flex-wrap gap-x-2 gap-y-1 text-foreground/55">
+                      {project.stack.map((tech, i) => (
+                        <span key={tech}>
+                          {tech}
+                          {i < project.stack.length - 1 && (
+                            <span className="ml-2 text-muted" aria-hidden>
+                              /
+                            </span>
+                          )}
+                        </span>
+                      ))}
+                    </span>
                   </div>
                 </a>
               </li>
@@ -136,11 +149,15 @@ export default function Home() {
             {skills.map((group) => (
               <div key={group.label.en} className="grid grid-cols-1 gap-3 sm:grid-cols-[8rem,1fr] sm:gap-8">
                 <dt className="text-sm text-muted">{group.label[lang]}</dt>
-                <dd className="text-base leading-relaxed text-foreground/85">
+                <dd className="flex flex-wrap gap-x-2 gap-y-1 text-base leading-relaxed text-foreground/85">
                   {group.items.map((item, i) => (
-                    <span key={item}>
-                      <span className="text-foreground">{item}</span>
-                      {i < group.items.length - 1 && <span className="mx-2 text-muted">/</span>}
+                    <span key={item} className="text-foreground">
+                      {item}
+                      {i < group.items.length - 1 && (
+                        <span className="ml-2 text-muted" aria-hidden>
+                          /
+                        </span>
+                      )}
                     </span>
                   ))}
                 </dd>
