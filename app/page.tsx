@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import { LanguageToggle } from "@/components/LanguageToggle";
-import { email, projects, skills, socials, timeline } from "@/lib/data";
+import { ProjectImage } from "@/components/ProjectImage";
+import { SocialIcon } from "@/components/SocialIcon";
+import { email, projects, skills, socials } from "@/lib/data";
 
 export default function Home() {
   const { t, lang } = useI18n();
@@ -102,13 +104,12 @@ export default function Home() {
           <ul>
             {projects.map((project) => (
               <li key={project.title} className="group border-t border-rule py-7 first:border-t-0">
-                <a
-                  href={project.href}
-                  className="block transition-opacity hover:opacity-100 opacity-95"
-                  target="_blank"
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="serif text-xl text-foreground sm:text-2xl">{project.title}</h3>
+                <a href={project.href} className="block transition-opacity hover:opacity-100 opacity-95">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <ProjectImage src={project.image} />
+                      <h3 className="serif text-xl text-foreground sm:text-2xl">{project.title}</h3>
+                    </div>
                     <span className="shrink-0 text-sm tabular-nums text-muted">{project.year}</span>
                   </div>
                   <p className="mt-2 text-base leading-relaxed text-foreground/75">{project.description[lang]}</p>
@@ -166,16 +167,17 @@ export default function Home() {
             </a>
             .
           </p>
-          <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-base">
+          <ul className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-base">
             {socials.map((social) => (
               <li key={social.href}>
                 <a
                   href={social.href}
                   target={social.external ? "_blank" : undefined}
                   rel={social.external ? "noreferrer noopener" : undefined}
-                  className="text-foreground/85 underline decoration-foreground/30 underline-offset-[6px] transition-colors hover:decoration-foreground"
+                  className="inline-flex items-center gap-2 text-foreground/85 underline decoration-foreground/30 underline-offset-[6px] transition-colors hover:decoration-foreground"
                 >
-                  {social.label[lang]}
+                  {social.icon && <SocialIcon name={social.icon} />}
+                  <span>{social.label[lang]}</span>
                   {social.external && (
                     <span aria-hidden className="ml-0.5 text-muted">
                       ↗

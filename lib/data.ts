@@ -9,6 +9,7 @@ export type Project = {
   description: Localized;
   stack: string[];
   href: string;
+  image: string;
 };
 
 export const projects: Project[] = [
@@ -24,7 +25,8 @@ export const projects: Project[] = [
       en: "A professional web development agency that designs and builds sites combining performance, aesthetics and purpose: responsive design, optimized code, hosting and maintenance — focused on modern digital experiences that help businesses grow.",
     },
     stack: ["Next.js", "TypeScript", "Tailwind", "Prisma", "PostgreSQL"],
-    href: "https://tagblade.com/",
+    href: "#",
+    image: "/projects/tagblade.svg",
   },
   {
     title: "Teslo Shop",
@@ -39,6 +41,7 @@ export const projects: Project[] = [
     },
     stack: ["Next.js", "TypeScript", "Tailwind", "PostgreSQL"],
     href: "#",
+    image: "/projects/teslo-shop.svg",
   },
   {
     title: "Mybeat",
@@ -53,6 +56,7 @@ export const projects: Project[] = [
     },
     stack: ["Next.js", "TypeScript", "Tailwind", "Prisma", "PostgreSQL"],
     href: "https://www.mybeat.me/",
+    image: "/projects/mybeat.svg",
   },
   {
     title: "lyrx",
@@ -66,7 +70,8 @@ export const projects: Project[] = [
       en: "An open source command-line tool written in Python. It detects the song you're currently playing and shows the synchronized lyrics in real time, right in your terminal. Compatible with Windows (via Windows Media Session) and Linux (via MPRIS). No GUI, no setup.",
     },
     stack: ["Python", "MPRIS", "Windows Media Session"],
-    href: "https://lyricli.vercel.app/",
+    href: "#",
+    image: "/projects/lyrx.svg",
   },
 ];
 
@@ -155,6 +160,7 @@ export type Social = {
   label: Localized;
   href: string;
   external: boolean;
+  icon?: "github" | "linkedin";
 };
 
 export const socials: Social[] = [
@@ -162,11 +168,13 @@ export const socials: Social[] = [
     label: { es: "GitHub", en: "GitHub" },
     href: "https://github.com",
     external: true,
+    icon: "github",
   },
   {
     label: { es: "LinkedIn", en: "LinkedIn" },
     href: "https://linkedin.com",
     external: true,
+    icon: "linkedin",
   },
   {
     label: { es: "Email", en: "Email" },
